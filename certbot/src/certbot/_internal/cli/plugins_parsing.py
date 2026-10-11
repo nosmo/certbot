@@ -73,6 +73,10 @@ def _plugins_parsing(helpful: "helpful.HelpfulArgumentParser",
                 default=flag_default("dns_luadns"),
                 help=("Obtain certificates using a DNS TXT record (if you are "
                       "using LuaDNS for DNS)."))
+    helpful.add(["plugins", "certonly"], "--dns-namecheap", action="store_true",
+                default=flag_default("dns_namecheap"),
+                help=("Obtain certificates using a DNS TXT record (if you are "
+                      "using Namecheap for DNS)."))
     helpful.add(["plugins", "certonly"], "--dns-nsone", action="store_true",
                 default=flag_default("dns_nsone"),
                 help=("Obtain certificates using a DNS TXT record (if you are "

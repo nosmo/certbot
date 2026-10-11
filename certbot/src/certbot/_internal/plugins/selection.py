@@ -166,8 +166,9 @@ def choose_plugin(prepared: list[disco.PluginEntryPoint],
 
 noninstaller_plugins = ["webroot", "manual", "standalone", "dns-cloudflare",
                         "dns-digitalocean", "dns-dnsimple", "dns-dnsmadeeasy", "dns-gehirn",
-                        "dns-google", "dns-linode", "dns-luadns", "dns-nsone", "dns-ovh",
-                        "dns-rfc2136", "dns-route53", "dns-sakuracloud"]
+                        "dns-google", "dns-linode", "dns-luadns", "dns-namecheap",
+                        "dns-nsone", "dns-ovh", "dns-rfc2136", "dns-route53",
+                        "dns-sakuracloud"]
 
 
 def record_chosen_plugins(config: configuration.NamespaceConfig, plugins: disco.PluginsRegistry,
@@ -326,6 +327,8 @@ def cli_plugin_requests(config: configuration.NamespaceConfig
         req_auth = set_configurator(req_auth, "dns-linode")
     if config.dns_luadns:
         req_auth = set_configurator(req_auth, "dns-luadns")
+    if config.dns_namecheap:
+        req_auth = set_configurator(req_auth, "dns-namecheap")
     if config.dns_nsone:
         req_auth = set_configurator(req_auth, "dns-nsone")
     if config.dns_ovh:

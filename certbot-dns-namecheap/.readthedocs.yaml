@@ -1,0 +1,30 @@
+# Read the Docs configuration file for Sphinx projects
+# See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
+
+# Required
+version: 2
+
+# Set the OS, Python version and other tools you might need
+build:
+  os: ubuntu-22.04
+  tools:
+    python: "3.11"
+    # You can also specify other tool versions
+  jobs:
+    post_install:
+      # Using a constraints file isn't natively supported. We use a
+      # post_install job with the following flags and method of invoking pip to
+      # most closely mimic the current default installation behavior.
+      - python -m pip install --exists-action=w --no-cache-dir -c tools/requirements.txt -e acme -e certbot -e certbot-dns-namecheap[docs]
+
+# Build documentation in the "docs/" directory with Sphinx
+sphinx:
+  configuration: certbot-dns-namecheap/docs/conf.py
+  # You can configure Sphinx to use a different builder, for instance use the dirhtml builder for simpler URLs
+  # builder: "dirhtml"
+  # Fail on all warnings to avoid broken references
+  fail_on_warning: true
+
+# Optionally build your docs in additional formats such as PDF and ePub
+formats:
+   - pdf
